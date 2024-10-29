@@ -9,54 +9,55 @@
   <body>
     <input id="search-input">
     <button id="search-button">Search</button>
-    <div id="card">
+    <section id="card">
       <div id="pokemon-name"></div>
       <div id="pokemon-id"></div>
       <div id="weight"></div>
       <div id="height"></div>
+      <div id="image-div">
+        <img id="pokemon-image">
+      </div>
       <div id="types"></div>
-    </div>
-    <div id="stats">
-<table>
-  <caption>
-Pokémon Stats
-  </caption>
-  <thead>
-    <tr>
-      <th scope="col">Stat</th>
-      <th scope="col">Value</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row" id="hp-text"></th>
-      <td id="hp"></td>
-</tr>
-      <tr><th scope="row" id="attack-text"></th>
-      <td id ="attack"></td></tr>
-      <tr><th scope="row" id="defense-text"></th>
-      <td id="defense"></td></tr>
-<tr><th scope="row" id="special-attack-text"></th>
-      <td id="special-attack"></td></tr>
-<tr><th scope="row" id="special-defense-text"></th>
-   <td id="special-defense"></td></tr>
-<tr><th scope="row" id="speed-text"></th>
-      <td id="speed"></td>
-    </tr>
-</tbody>
-
-
-
-
-
-
-
-
-
-
-
-
-    </div>
+    </section>
+    <section id="stats">
+      <table>
+        <caption>
+          Pokémon Stats
+        </caption>
+        <thead>
+          <tr>
+            <th scope="col">Stat</th>
+            <th scope="col">Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row" id="hp-text"></th>
+            <td id="hp"></td>
+          </tr>
+          <tr>
+            <th scope="row" id="attack-text"></th>
+            <td id="attack"></td>
+          </tr>
+          <tr>
+            <th scope="row" id="defense-text"></th>
+            <td id="defense"></td>
+          </tr>
+          <tr>
+            <th scope="row" id="special-attack-text"></th>
+            <td id="special-attack"></td>
+          </tr>
+          <tr>
+            <th scope="row" id="special-defense-text"></th>
+            <td id="special-defense"></td>
+          </tr>
+          <tr>
+            <th scope="row" id="speed-text"></th>
+            <td id="speed"></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
     <script src="script.js"></script>
   </body>
 </html>
