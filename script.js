@@ -21,7 +21,7 @@ const defenseTextField = document.querySelector("#defense-text");
 const specialAttackTextField = document.querySelector("#special-attack-text");
 const specialDefenseTextField = document.querySelector("#special-defense-text");
 const speedTextField = document.querySelector("#speed-text");
-const pokemonImage = document.querySelector("#pokemon-image");
+const pokemonImage = document.querySelector("#sprite");
 
 function capitalizeFirstLetter(str) {
   return String(str).charAt(0).toUpperCase() + String(str).slice(1);
@@ -41,11 +41,10 @@ async function pokeResponse(pokemon) {
           const weightValue = data.weight;
           const heightValue = data.height;
           /*set values */
-          // caption.innerText = `${capitalizeFirstLetter(nameValue)}'s Stats`;
           pokemonName.innerText = nameValue.toUpperCase();
-          weight.innerText += weightValue;
-          height.innerText += heightValue;
-          pokemonId.innerText = `# ${idValue}`;
+          weight.innerText += `Weight: ${weightValue}`;
+          height.innerText += `Height: ${heightValue}`;
+          pokemonId.innerText = `#${idValue}`;
           data.types.forEach((element) => {
             let typeDiv = document.createElement("div");
             typeDiv.innerText = element.type.name.toUpperCase();
@@ -92,10 +91,10 @@ async function pokeResponse(pokemon) {
           speed.innerText += speedValue;
         });
     } else {
-      console.error("There was an error");
+      alert("Pokémon not found");
     }
   } catch {
-    console.error("Pokémon not found");
+    alert("Pokémon not found");
   }
 }
 
@@ -108,8 +107,8 @@ function empty(element) {
 function emptyAll() {
   pokemonName.innerText = "";
   pokemonId.innerText = "";
-  weight.innerText = "Weight: ";
-  height.innerText = "Height: ";
+  weight.innerText = "";
+  height.innerText = "";
   pokemonImage.src = "";
   types.innerHTML = "";
   hpTextField.innerText = "";
@@ -137,4 +136,3 @@ searchBtn.addEventListener("click", () => {
 
   pokeResponse(cleanSearchInput);
 });
-pokeResponse(49);
