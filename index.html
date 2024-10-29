@@ -1,63 +1,70 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>POKE 'EM ON</title>
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="style.css">
   </head>
   <body>
-    <input id="search-input" required />
-    <button id="search-button">Search</button>
-    <section id="card">
-      <div id="pokemon-name"></div>
-      <div id="pokemon-id"></div>
-      <div id="weight"></div>
-      <div id="height"></div>
-      <div id="image-div">
-        <img id="pokemon-image" />
-      </div>
-      <div id="types"></div>
-    </section>
-    <section id="stats">
-      <table>
-        <caption>
-          Pokémon Stats
-        </caption>
-        <thead>
-          <tr>
-            <th scope="col">Stat</th>
-            <th scope="col">Value</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th scope="row" id="hp-text"></th>
-            <td id="hp"></td>
-          </tr>
-          <tr>
-            <th scope="row" id="attack-text"></th>
-            <td id="attack"></td>
-          </tr>
-          <tr>
-            <th scope="row" id="defense-text"></th>
-            <td id="defense"></td>
-          </tr>
-          <tr>
-            <th scope="row" id="special-attack-text"></th>
-            <td id="special-attack"></td>
-          </tr>
-          <tr>
-            <th scope="row" id="special-defense-text"></th>
-            <td id="special-defense"></td>
-          </tr>
-          <tr>
-            <th scope="row" id="speed-text"></th>
-            <td id="speed"></td>
-          </tr>
-        </tbody>
-      </table>
-    </section>
+    <main>
+      <p>Search for Pokémon name or ID:</p>
+      <section id="search" class="search">
+        <input id="search-input" required>
+        <button id="search-button">Search</button>
+      </section>
+      <section id="card" class="card">
+        <section id="name-and-id" class="name-and-id">
+          <div id="pokemon-name"></div>
+          <div id="pokemon-id"></div>
+        </section>
+        <div class="weight-and-height">
+          <div id="weight">Weight:</div>
+          <div id="height">Height:</div>
+        </div>
+        <div id="image-div">
+          <img id="pokemon-image" width="180" height="180">
+        </div>
+        <div id="types" class="types"></div>
+      </section>
+      <section id="stats" class="stats">
+        <table>
+          <caption id="caption"></caption>
+          <thead>
+            <tr>
+              <th scope="col">Base</th>
+              <th scope="col">Stats</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row" id="hp-text"></th>
+              <td id="hp"></td>
+            </tr>
+            <tr>
+              <th scope="row" id="attack-text"></th>
+              <td id="attack"></td>
+            </tr>
+            <tr>
+              <th scope="row" id="defense-text"></th>
+              <td id="defense"></td>
+            </tr>
+            <tr>
+              <th scope="row" id="special-attack-text"></th>
+              <td id="special-attack"></td>
+            </tr>
+            <tr>
+              <th scope="row" id="special-defense-text"></th>
+              <td id="special-defense"></td>
+            </tr>
+            <tr>
+              <th scope="row" id="speed-text"></th>
+              <td id="speed"></td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+    </main>
     <script src="script.js"></script>
   </body>
 </html>
