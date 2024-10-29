@@ -1,3 +1,5 @@
+import "./styles.css";
+
 const card = document.querySelector("#card");
 const stats = document.querySelector("#stats");
 const caption = document.querySelector("#caption");
@@ -29,7 +31,7 @@ function capitalizeFirstLetter(str) {
 
 async function pokeResponse(pokemon) {
   try {
-    pokeString = `https://pokeapi-proxy.freecodecamp.rocks/api/pokemon/${pokemon}`;
+    const pokeString = `https://pokeapi-proxy.freecodecamp.rocks/api/pokemon/${pokemon}`;
     const response = await fetch(pokeString);
     if (response.ok) {
       fetch(pokeString)
@@ -98,12 +100,6 @@ async function pokeResponse(pokemon) {
   }
 }
 
-function empty(element) {
-  while (element.firstElementChild) {
-    element.firstElementChild.innerHTML = "";
-  }
-}
-
 function emptyAll() {
   pokemonName.innerText = "";
   pokemonId.innerText = "";
@@ -130,9 +126,5 @@ searchBtn.addEventListener("click", () => {
   const cleanSearchInput = searchInput.value
     .toLowerCase()
     .replace(/([^a-z0-9-])|([_])/gi, "");
-  if (Number(cleanSearchInput) > 10277) {
-    alert("Please enter a valid value");
-  }
-
   pokeResponse(cleanSearchInput);
 });
