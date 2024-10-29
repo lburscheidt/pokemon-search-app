@@ -13,6 +13,17 @@ const specialDefense = document.querySelector("#special-defense");
 const speed = document.querySelector("#speed");
 pokemonGet(25);
 
+const hpTextField = document.querySelector("#hp-text");
+const attackTextField = document.querySelector("#attack-text");
+const defenseTextField = document.querySelector("#defense-text");
+const specialAttackTextField = document.querySelector("#special-attack-text");
+const specialDefenseTextField = document.querySelector("#special-defense-text");
+const speedTextField = document.querySelector("#speed-text");
+
+function capitalizeFirstLetter(str) {
+  return String(str).charAt(0).toUpperCase() + String(str).slice(1);
+}
+
 function pokemonGet(pokemon) {
   let pokemonStr = `https://pokeapi-proxy.freecodecamp.rocks/api/pokemon/${pokemon}`;
   console.log(
@@ -37,13 +48,28 @@ function pokemonGet(pokemon) {
         const img = data.sprites.front_default;
         /*stats*/
         const hpValue = data.stats[0].base_stat;
+        console.log(hpValue);
         const attackValue = data.stats[1].base_stat;
         const defenseValue = data.stats[2].base_stat;
         const specialAttackValue = data.stats[3].base_stat;
         const specialDefenseValue = data.stats[4].base_stat;
         const speedValue = data.stats[5].base_stat;
 
-        hp.innerText += hpValue;
+        /*text */
+        const hpText = data.stats[0].stat.name;
+        const attackText = data.stats[1].stat.name;
+        const defenseText = data.stats[2].stat.name;
+        const specialAttackText = data.stats[3].stat.name;
+        const specialDefenseText = data.stats[4].stat.name;
+        const speedText = data.stats[5].stat.name;
+        hpTextField.innerText = `${hpText} `;
+        attackTextField.innerText = `${attackText} `;
+        defenseTextField.innerText = `${defenseText} `;
+        specialAttackTextField.innerText = `${specialAttackText} `;
+        specialDefenseTextField.innerText = `${specialDefenseText} `;
+        speedTextField.innerText = `${speedText} `;
+
+        hp.innerText = `${hpValue}`;
         attack.innerText += attackValue;
         defense.innerText += defenseValue;
         specialAttack.innerText += specialAttackValue;
