@@ -26,105 +26,106 @@ const speedTextField = document.querySelector("#speed-text");
 const pokemonImage = document.querySelector("#sprite");
 
 function capitalizeFirstLetter(str) {
-  return String(str).charAt(0).toUpperCase() + String(str).slice(1);
+	return String(str).charAt(0).toUpperCase() + String(str).slice(1);
 }
 
 async function pokeResponse(pokemon) {
-  try {
-    const pokeString = `https://pokeapi-proxy.freecodecamp.rocks/api/pokemon/${pokemon}`;
-    const response = await fetch(pokeString);
-    if (response.ok) {
-      fetch(pokeString)
-        .then((res) => res.json())
-        .then((data) => {
-          /*card*/
-          const nameValue = data.name;
-          const idValue = data.id;
-          const weightValue = data.weight;
-          const heightValue = data.height;
-          /*set values */
-          pokemonName.innerText = nameValue.toUpperCase();
-          weight.innerText += `Weight: ${weightValue}`;
-          height.innerText += `Height: ${heightValue}`;
-          pokemonId.innerText = `#${idValue}`;
-          data.types.forEach((element) => {
-            let typeDiv = document.createElement("div");
-            typeDiv.innerText = element.type.name.toUpperCase();
-            typeDiv.classList.add(`${element.type.name}`);
-            typeDiv.classList.add("type");
-            types.appendChild(typeDiv);
-          });
-          pokemonImage.src = data.sprites.front_default;
+	try {
+		const pokeString = `https://pokeapi-proxy.freecodecamp.rocks/api/pokemon/${pokemon}`;
+		const response = await fetch(pokeString);
+		if (response.ok) {
+			fetch(pokeString)
+				.then((res) => res.json())
+				.then((data) => {
+					/*card*/
+					const nameValue = data.name;
+					const idValue = data.id;
+					const weightValue = data.weight;
+					const heightValue = data.height;
+					/*set values */
+					pokemonName.innerText = nameValue.toUpperCase();
+					weight.innerText += `Weight: ${weightValue}`;
+					height.innerText += `Height: ${heightValue}`;
+					pokemonId.innerText = `#${idValue}`;
+					//          data.types.forEach((element) => {
+					//            const typeDiv = document.createElement("div");
+					//            typeDiv.innerText = element.type.name.toUpperCase();
+					//            typeDiv.classList.add(`${element.type.name}`);
+					//            typeDiv.classList.add("type");
+					//            types.appendChild(typeDiv);
+					//          });
+					for (const item of data.types) {
+						const typeDiv = document.createElement("div");
+						typeDiv.innerText = item.type.name.toUpperCase();
+						typeDiv.classList.add(`${item.type.name}`);
+						typeDiv.classList.add("type");
+						types.appendChild(typeDiv);
+					}
+					pokemonImage.src = data.sprites.front_default;
 
-          /*stats*/
-          const hpValue = data.stats[0].base_stat;
-          const attackValue = data.stats[1].base_stat;
-          const defenseValue = data.stats[2].base_stat;
-          const specialAttackValue = data.stats[3].base_stat;
-          const specialDefenseValue = data.stats[4].base_stat;
-          const speedValue = data.stats[5].base_stat;
-          /*text */
-          const hpText = data.stats[0].stat.name.toUpperCase();
-          const attackText = capitalizeFirstLetter(data.stats[1].stat.name);
-          const defenseText = capitalizeFirstLetter(data.stats[2].stat.name);
-          let spattack = data.stats[3].stat.name;
-          const specialAttackText =
-            capitalizeFirstLetter(spattack.replace("-", " ").split(" ")[0]) +
-            " " +
-            capitalizeFirstLetter(spattack.replace("-", " ").split(" ")[1]);
-          const spdefense = data.stats[4].stat.name;
-          const specialDefenseText =
-            capitalizeFirstLetter(spdefense.replace("-", " ").split(" ")[0]) +
-            " " +
-            capitalizeFirstLetter(spdefense.replace("-", " ").split(" ")[1]);
-          const speedText = capitalizeFirstLetter(data.stats[5].stat.name);
-          hpTextField.innerText = `${hpText} `;
-          attackTextField.innerText = `${attackText} `;
-          defenseTextField.innerText = `${defenseText} `;
-          specialAttackTextField.innerText = `${specialAttackText} `;
-          specialDefenseTextField.innerText = `${specialDefenseText} `;
-          speedTextField.innerText = `${speedText} `;
+					/*stats*/
+					const hpValue = data.stats[0].base_stat;
+					const attackValue = data.stats[1].base_stat;
+					const defenseValue = data.stats[2].base_stat;
+					const specialAttackValue = data.stats[3].base_stat;
+					const specialDefenseValue = data.stats[4].base_stat;
+					const speedValue = data.stats[5].base_stat;
+					/*text */
+					const hpText = data.stats[0].stat.name.toUpperCase();
+					const attackText = capitalizeFirstLetter(data.stats[1].stat.name);
+					const defenseText = capitalizeFirstLetter(data.stats[2].stat.name);
+					const spattack = data.stats[3].stat.name;
+					const specialAttackText = `${capitalizeFirstLetter(spattack.replace("-", " ").split(" ")[0])} ${capitalizeFirstLetter(spattack.replace("-", " ").split(" ")[1])}`;
+					const spdefense = data.stats[4].stat.name;
+					const specialDefenseText = `${capitalizeFirstLetter(spdefense.replace("-", " ").split(" ")[0])} ${capitalizeFirstLetter(spdefense.replace("-", " ").split(" ")[1])}`;
+					const speedText = capitalizeFirstLetter(data.stats[5].stat.name);
+					hpTextField.innerText = `${hpText} `;
+					attackTextField.innerText = `${attackText} `;
+					defenseTextField.innerText = `${defenseText} `;
+					specialAttackTextField.innerText = `${specialAttackText} `;
+					specialDefenseTextField.innerText = `${specialDefenseText} `;
+					speedTextField.innerText = `${speedText} `;
 
-          hp.innerText = `${hpValue}`;
-          attack.innerText += attackValue;
-          defense.innerText += defenseValue;
-          specialAttack.innerText += specialAttackValue;
-          specialDefense.innerText += specialDefenseValue;
-          speed.innerText += speedValue;
-        });
-    } else {
-      alert("Pokémon not found");
-    }
-  } catch {
-    alert("Pokémon not found");
-  }
+					hp.innerText = `${hpValue}`;
+					attack.innerText += attackValue;
+					defense.innerText += defenseValue;
+					specialAttack.innerText += specialAttackValue;
+					specialDefense.innerText += specialDefenseValue;
+					speed.innerText += speedValue;
+				});
+		} else {
+			alert("Pokémon not found");
+		}
+	} catch {
+		alert("Pokémon not found");
+	}
 }
 
 function emptyAll() {
-  pokemonName.innerText = "";
-  pokemonId.innerText = "";
-  weight.innerText = "";
-  height.innerText = "";
-  pokemonImage.src = "";
-  types.innerHTML = "";
-  hpTextField.innerText = "";
-  attackTextField.innerText = "";
-  defenseTextField.innerText = "";
-  specialAttackTextField.innerText = "";
-  specialDefenseTextField.innerText = "";
-  speedTextField.innerText = "";
-  hp.innerText = "";
-  attack.innerText = "";
-  defense.innerText = "";
-  specialAttack.innerText = "";
-  specialDefense.innerText = "";
-  speed.innerText = "";
+	pokemonName.innerText = "";
+	pokemonId.innerText = "";
+	weight.innerText = "";
+	height.innerText = "";
+	pokemonImage.src = "";
+	types.innerHTML = "";
+	hpTextField.innerText = "";
+	attackTextField.innerText = "";
+	defenseTextField.innerText = "";
+	specialAttackTextField.innerText = "";
+	specialDefenseTextField.innerText = "";
+	speedTextField.innerText = "";
+	hp.innerText = "";
+	attack.innerText = "";
+	defense.innerText = "";
+	specialAttack.innerText = "";
+	specialDefense.innerText = "";
+	speed.innerText = "";
 }
 
 searchBtn.addEventListener("click", () => {
-  emptyAll();
-  const cleanSearchInput = searchInput.value
-    .toLowerCase()
-    .replace(/([^a-z0-9-])|([_])/gi, "");
-  pokeResponse(cleanSearchInput);
+	emptyAll();
+	const cleanSearchInput = searchInput.value
+		.toLowerCase()
+		.replace(/([^a-z0-9-])|([_])/gi, "");
+	pokeResponse(cleanSearchInput);
 });
